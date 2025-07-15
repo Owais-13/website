@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/ielts-scoring.css">
   </head>
   <body>
 	  <div class="bg-top navbar-light">
@@ -207,6 +208,51 @@
       </div>
     </section>
 
+    <!-- Interactive IELTS Tests -->
+    <section class="ftco-section bg-light">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-8 text-center heading-section ftco-animate">
+            <h2 class="mb-4">Interactive AI-Powered IELTS Tests</h2>
+            <p>Take real IELTS tests with AI scoring and detailed feedback powered by OpenAI</p>
+          </div>
+        </div>
+        
+        <!-- API Key Setup Section -->
+        <div id="api-setup-section" class="api-setup">
+          <h3>Setup OpenAI Integration</h3>
+          <p>To use AI-powered scoring, please enter your OpenAI API key. Your key is stored locally and never shared.</p>
+          <div class="api-input-group">
+            <input type="password" id="openai-api-key" placeholder="Enter your OpenAI API key...">
+            <button onclick="setupOpenAI()">Initialize AI Scoring</button>
+          </div>
+          <small style="display: block; margin-top: 10px; opacity: 0.8;">
+            Get your API key from <a href="https://platform.openai.com/api-keys" target="_blank" style="color: white;">OpenAI Platform</a>
+          </small>
+        </div>
+
+        <!-- Test Container -->
+        <div id="test-container" class="test-container" style="display: none;">
+          <div class="test-selection">
+            <h3>Choose Your Test</h3>
+            <p style="margin-bottom: 20px; color: #666;">AI-powered scoring is ready! Select a test to begin.</p>
+            <div class="test-options">
+              <button class="btn btn-primary m-2" onclick="ieltsTestInterface.startWritingTest('task1')">Writing Task 1</button>
+              <button class="btn btn-primary m-2" onclick="ieltsTestInterface.startWritingTest('task2')">Writing Task 2</button>
+              <button class="btn btn-primary m-2" onclick="ieltsTestInterface.startReadingTest()">Reading Test</button>
+              <button class="btn btn-primary m-2" onclick="ieltsTestInterface.startListeningTest()">Listening Test</button>
+              <button class="btn btn-primary m-2" onclick="ieltsTestInterface.startSpeakingTest()">Speaking Test</button>
+            </div>
+            <div style="margin-top: 30px; text-align: center;">
+              <button class="btn btn-outline-secondary btn-sm" onclick="resetAPIKey()">
+                🔄 Reset API Key
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Practice Resources -->
     <section class="ftco-section">
       <div class="container">
@@ -303,5 +349,67 @@
     <script src="js/jquery.animateNumber.min.js"></script>
     <script src="js/scrollax.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/ielts-scoring.js"></script>
+    
+    <script>
+      // Setup function for OpenAI integration
+      function setupOpenAI() {
+        const apiKey = document.getElementById('openai-api-key').value.trim();
+        
+        if (!apiKey) {
+          alert('Please enter your OpenAI API key');
+          return;
+        }
+        
+        if (!apiKey.startsWith('sk-')) {
+          alert('Please enter a valid OpenAI API key (should start with "sk-")');
+          return;
+        }
+        
+        try {
+          // Initialize the IELTS scoring system
+          initializeIELTSScoring(apiKey);
+          
+          // Store API key locally (you may want to encrypt this in production)
+          localStorage.setItem('openai_api_key', apiKey);
+          
+          // Hide setup section and show test container
+          document.getElementById('api-setup-section').style.display = 'none';
+          document.getElementById('test-container').style.display = 'block';
+          
+          // Success message
+          alert('OpenAI integration setup successfully! You can now take AI-powered IELTS tests.');
+          
+        } catch (error) {
+          console.error('Error setting up OpenAI:', error);
+          alert('Error setting up OpenAI integration. Please check your API key and try again.');
+        }
+      }
+      
+      // Check if API key is already stored
+      document.addEventListener('DOMContentLoaded', function() {
+        const storedApiKey = localStorage.getItem('openai_api_key');
+        if (storedApiKey) {
+          try {
+            initializeIELTSScoring(storedApiKey);
+            document.getElementById('api-setup-section').style.display = 'none';
+            document.getElementById('test-container').style.display = 'block';
+          } catch (error) {
+            console.error('Error loading stored API key:', error);
+            localStorage.removeItem('openai_api_key'); // Remove invalid key
+          }
+        }
+      });
+      
+      // Add reset API key function
+      function resetAPIKey() {
+        if (confirm('Are you sure you want to reset your API key? You will need to enter it again.')) {
+          localStorage.removeItem('openai_api_key');
+          document.getElementById('api-setup-section').style.display = 'block';
+          document.getElementById('test-container').style.display = 'none';
+          document.getElementById('openai-api-key').value = '';
+        }
+      }
+    </script>
   </body>
 </html> 

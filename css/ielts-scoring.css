@@ -1,0 +1,540 @@
+/* IELTS Scoring Interface Styles */
+
+.test-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.test-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 10px 10px 0 0;
+    margin: -20px -20px 20px -20px;
+    position: relative;
+}
+
+.test-header h3 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.test-header p {
+    margin: 5px 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.timer-display {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.test-question {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+    margin-bottom: 20px;
+}
+
+.test-question h4 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.test-question p {
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+}
+
+.test-answer {
+    margin-bottom: 30px;
+}
+
+.test-answer label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #333;
+}
+
+.test-answer textarea {
+    resize: vertical;
+    min-height: 300px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 15px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    transition: border-color 0.3s ease;
+}
+
+.test-answer textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.word-count {
+    text-align: right;
+    margin-top: 8px;
+}
+
+.word-count small {
+    color: #6c757d;
+    font-size: 12px;
+}
+
+/* Reading Test Styles */
+.reading-passage {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border: 1px solid #e9ecef;
+}
+
+.reading-passage h4 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 20px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+.passage-text {
+    line-height: 1.8;
+    color: #444;
+    font-size: 15px;
+}
+
+.reading-questions, .listening-questions {
+    margin-bottom: 30px;
+}
+
+.reading-questions h4, .listening-questions h4 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.question-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
+}
+
+.question-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.question-item p {
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #333;
+}
+
+.question-item input {
+    border: 2px solid #e9ecef;
+    border-radius: 6px;
+    padding: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.question-item input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Listening Test Styles */
+.listening-section {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.listening-section h4 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.audio-player {
+    margin: 20px 0;
+}
+
+.audio-player audio {
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Speaking Test Styles */
+.speaking-test {
+    margin-bottom: 30px;
+}
+
+.speaking-instructions {
+    background-color: #e7f3ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border-left: 4px solid #007bff;
+}
+
+.speaking-part {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #e9ecef;
+}
+
+.speaking-part h4 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.speaking-part p {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.speaking-response {
+    border: 2px solid #e9ecef;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.speaking-response:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Test Actions */
+.test-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    padding: 20px 0;
+    border-top: 1px solid #e9ecef;
+    margin-top: 30px;
+}
+
+.test-actions .btn {
+    padding: 12px 30px;
+    font-weight: 600;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.test-actions .btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.test-actions .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.test-actions .btn-secondary {
+    background: linear-gradient(135deg, #a8a8a8 0%, #6c757d 100%);
+    color: white;
+}
+
+.test-actions .btn-success {
+    background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+    color: white;
+}
+
+/* Test Results */
+.test-results {
+    margin-top: 30px;
+}
+
+.results-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.results-header h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+.score-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px 40px;
+    border-radius: 50px;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.score-label {
+    display: block;
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+.score-value {
+    display: block;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.score-breakdown {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.score-breakdown p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.detailed-feedback {
+    background-color: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.detailed-feedback h4 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 20px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+.feedback-content {
+    line-height: 1.8;
+    color: #555;
+}
+
+.feedback-content p {
+    margin-bottom: 15px;
+}
+
+/* Test Selection */
+.test-selection {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.test-selection h3 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+.test-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.test-options .btn {
+    padding: 15px 25px;
+    font-weight: 600;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    border: none;
+    min-width: 180px;
+}
+
+/* Loading Overlay */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loading-content {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 300px;
+}
+
+.loading-content p {
+    margin-top: 20px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* API Key Setup */
+.api-setup {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.api-setup h3 {
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.api-setup p {
+    margin-bottom: 20px;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.api-input-group {
+    display: flex;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.api-input-group input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.api-input-group button {
+    padding: 12px 25px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.api-input-group button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .test-container {
+        margin: 10px;
+        padding: 15px;
+    }
+    
+    .timer-display {
+        position: static;
+        margin-top: 15px;
+        text-align: center;
+    }
+    
+    .test-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .test-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .api-input-group {
+        flex-direction: column;
+    }
+    
+    .score-badge {
+        padding: 15px 30px;
+    }
+    
+    .score-value {
+        font-size: 24px;
+    }
+}
+
+/* Animation for smooth transitions */
+.test-container * {
+    transition: all 0.3s ease;
+}
+
+/* Progress bar for tests */
+.test-progress {
+    background-color: #e9ecef;
+    height: 6px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.test-progress-bar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+/* Highlight active test sections */
+.test-section.active {
+    border-left: 4px solid #007bff;
+    background-color: #f8f9fa;
+}
+
+/* Custom scrollbar for text areas */
+textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+textarea::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
