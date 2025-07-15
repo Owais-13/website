@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>IELTS Speaking Mock Test - VisaFluent</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .speaking-test-container {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .part-section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .part-header {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .recording-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .record-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .record-btn:hover {
+            background: #c82333;
+        }
+        
+        .record-btn.recording {
+            background: #28a745;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+        
+        .timer-display {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .question-card {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .question-card h5 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        
+        .transcript-section {
+            margin-top: 20px;
+        }
+        
+        .scoring-results {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #007bff;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px auto;
+        }
+        
+        .score-breakdown {
+            margin-top: 30px;
+        }
+        
+        .criteria {
+            margin-bottom: 20px;
+        }
+        
+        .criteria h5 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .progress {
+            height: 25px;
+            background: #e9ecef;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            background: #28a745;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: width 0.6s ease;
+        }
+        
+        .feedback-section {
+            margin-top: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .improvement-tips {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin-top: 20px;
+        }
+        
+        .audio-visualization {
+            height: 60px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        
+        .audio-bar {
+            width: 4px;
+            height: 20px;
+            background: #007bff;
+            margin: 0 2px;
+            border-radius: 2px;
+            transition: height 0.2s;
+        }
+        
+        .audio-bar.active {
+            animation: wave 0.8s infinite ease-in-out;
+        }
+        
+        @keyframes wave {
+            0%, 100% { height: 20px; }
+            50% { height: 40px; }
+        }
+    </style>
+  </head>
+  <body>
+    <div class="bg-top navbar-light">
+      <div class="container">
+        <div class="row no-gutters d-flex align-items-center align-items-stretch">
+          <div class="col-md-4 d-flex align-items-center py-4">
+            <a class="navbar-brand" href="index.html">VisaFluent</a>
+          </div>
+          <div class="col-lg-8 d-block">
+            <div class="row d-flex">
+              <div class="col-md d-flex topper align-items-center align-items-stretch py-md-4">
+                <div class="icon d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+                <div class="text">
+                  <span>Email</span>
+                  <span>info@ieltsmaster.com</span>
+                </div>
+              </div>
+              <div class="col-md d-flex topper align-items-center align-items-stretch py-md-4">
+                <div class="icon d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+                <div class="text">
+                  <span>Call</span>
+                  <span>Call Us: + 1235 2355 98</span>
+                </div>
+              </div>
+              <div class="col-md topper d-flex align-items-center justify-content-end">
+                <p class="mb-0 d-block">
+                  <a href="#" class="btn py-2 px-3 btn-primary" data-toggle="modal" data-target="#enrollModal">
+                    <span>Enroll Now</span>
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
+      <div class="container d-flex align-items-center">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="oi oi-menu"></span> Menu
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a href="index.html" class="nav-link pl-0">Home</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="courses.html" class="nav-link">Courses</a></li>
+            <li class="nav-item active"><a href="practice.html" class="nav-link">Practice Tests</a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-8 text-center heading-section ftco-animate">
+            <h2 class="mb-4">IELTS Speaking Mock Test</h2>
+            <p>Complete all three parts of the speaking test. Record your responses or type them below for AI analysis.</p>
+          </div>
+        </div>
+        
+        <div class="alert-container"></div>
+        
+        <div class="row">
+          <div class="col-lg-12">
+            <form id="speaking-test-form">
+              <div class="speaking-test-container">
+                <!-- Part 1 -->
+                <div class="part-section">
+                  <div class="part-header">
+                    <h3>Part 1: Introduction and Interview (4-5 minutes)</h3>
+                    <p class="mb-0">Answer questions about familiar topics</p>
+                  </div>
+                  <div class="question-card">
+                    <h5>Topic: Your Studies/Work</h5>
+                    <ul>
+                      <li>What do you do? Do you work or are you a student?</li>
+                      <li>What subject are you studying? / What is your job?</li>
+                      <li>Why did you choose this subject/job?</li>
+                      <li>What do you like most about it?</li>
+                    </ul>
+                  </div>
+                  <div class="recording-controls">
+                    <button type="button" class="record-btn" id="record-part1">
+                      <i class="icon-microphone"></i> Start Recording
+                    </button>
+                    <div class="timer-display" id="timer-part1">00:00</div>
+                  </div>
+                  <div class="audio-visualization" id="audio-viz-part1" style="display: none;">
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                  </div>
+                </div>
+                
+                <!-- Part 2 -->
+                <div class="part-section">
+                  <div class="part-header">
+                    <h3>Part 2: Individual Long Turn (3-4 minutes)</h3>
+                    <p class="mb-0">Speak about a topic for 1-2 minutes after 1 minute preparation</p>
+                  </div>
+                  <div class="question-card">
+                    <h5>Topic Card</h5>
+                    <p><strong>Describe a book that you enjoyed reading</strong></p>
+                    <p>You should say:</p>
+                    <ul>
+                      <li>What the book was about</li>
+                      <li>When you read it</li>
+                      <li>Why you decided to read it</li>
+                      <li>And explain why you enjoyed it</li>
+                    </ul>
+                  </div>
+                  <div class="recording-controls">
+                    <button type="button" class="record-btn" id="record-part2">
+                      <i class="icon-microphone"></i> Start Recording
+                    </button>
+                    <div class="timer-display" id="timer-part2">00:00</div>
+                  </div>
+                  <div class="audio-visualization" id="audio-viz-part2" style="display: none;">
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                  </div>
+                </div>
+                
+                <!-- Part 3 -->
+                <div class="part-section">
+                  <div class="part-header">
+                    <h3>Part 3: Two-way Discussion (4-5 minutes)</h3>
+                    <p class="mb-0">Discuss abstract ideas related to the Part 2 topic</p>
+                  </div>
+                  <div class="question-card">
+                    <h5>Discussion Questions</h5>
+                    <ul>
+                      <li>What kinds of books are most popular in your country?</li>
+                      <li>Do you think reading books is more important now than in the past?</li>
+                      <li>How do you think technology has changed the way people read?</li>
+                      <li>What are the advantages of e-books over traditional books?</li>
+                      <li>Do you think books will disappear in the future?</li>
+                    </ul>
+                  </div>
+                  <div class="recording-controls">
+                    <button type="button" class="record-btn" id="record-part3">
+                      <i class="icon-microphone"></i> Start Recording
+                    </button>
+                    <div class="timer-display" id="timer-part3">00:00</div>
+                  </div>
+                  <div class="audio-visualization" id="audio-viz-part3" style="display: none;">
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                  </div>
+                </div>
+                
+                <!-- Alternative: Text Input -->
+                <div class="transcript-section">
+                  <h4>Alternative: Type Your Responses</h4>
+                  <p>If you prefer, you can type your responses instead of recording:</p>
+                  <div class="form-group">
+                    <label for="speaking-transcript">Your Complete Speaking Response:</label>
+                    <textarea class="form-control" id="speaking-transcript" rows="10" placeholder="Type your responses to all three parts here..."></textarea>
+                  </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                  <button type="submit" class="btn btn-primary btn-lg submit-speaking-test">Submit for AI Scoring</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+        <!-- Results Section -->
+        <div class="row mt-5">
+          <div class="col-lg-12">
+            <div id="speaking-results"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <p>Copyright &copy; 2024 VisaFluent. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/ielts-scoring.js"></script>
+    
+    <script>
+      // Recording functionality (simplified - in production, use Web Audio API)
+      let recording = {};
+      let timers = {};
+      
+      function startRecording(partNumber) {
+        const btn = $(`#record-part${partNumber}`);
+        const timerDisplay = $(`#timer-part${partNumber}`);
+        const audioViz = $(`#audio-viz-part${partNumber}`);
+        
+        if (!recording[partNumber]) {
+          // Start recording
+          recording[partNumber] = true;
+          btn.addClass('recording').html('<i class="icon-stop"></i> Stop Recording');
+          audioViz.show();
+          audioViz.find('.audio-bar').addClass('active');
+          
+          // Start timer
+          let seconds = 0;
+          timers[partNumber] = setInterval(() => {
+            seconds++;
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            timerDisplay.text(`${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`);
+          }, 1000);
+          
+          // Simulate recording (in production, use MediaRecorder API)
+          console.log(`Recording Part ${partNumber}...`);
+          
+        } else {
+          // Stop recording
+          recording[partNumber] = false;
+          btn.removeClass('recording').html('<i class="icon-microphone"></i> Start Recording');
+          audioViz.find('.audio-bar').removeClass('active');
+          setTimeout(() => audioViz.hide(), 300);
+          
+          // Stop timer
+          clearInterval(timers[partNumber]);
+          
+          // Simulate saving recording
+          console.log(`Stopped recording Part ${partNumber}`);
+        }
+      }
+      
+      // Attach click handlers
+      $('#record-part1').click(() => startRecording(1));
+      $('#record-part2').click(() => startRecording(2));
+      $('#record-part3').click(() => startRecording(3));
+      
+      // Form submission prevention (handled by ielts-scoring.js)
+      $('#speaking-test-form').on('submit', function(e) {
+        e.preventDefault();
+      });
+    </script>
+  </body>
+</html>
