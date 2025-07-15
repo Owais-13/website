@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>IELTS Assessment - VisaFluent</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+      .assessment-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .assessment-step {
+        display: none;
+        animation: fadeIn 0.5s ease-in;
+      }
+      .assessment-step.active {
+        display: block;
+      }
+      .progress-bar {
+        height: 10px;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+        margin: 20px 0;
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 100%;
+        background-color: #007bff;
+        width: 0%;
+        transition: width 0.3s ease;
+      }
+      .question-card {
+        background: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin: 20px 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+      .option-btn {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        margin: 10px 0;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        background: white;
+        text-align: left;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      .option-btn:hover {
+        border-color: #007bff;
+        background-color: #f8f9fa;
+      }
+      .option-btn.selected {
+        border-color: #007bff;
+        background-color: #e3f2fd;
+      }
+      .text-input {
+        width: 100%;
+        min-height: 120px;
+        padding: 15px;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        resize: vertical;
+        font-family: inherit;
+      }
+      .speaking-section {
+        text-align: center;
+        padding: 30px;
+      }
+      .record-btn {
+        background: #dc3545;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .record-btn:hover {
+        background: #c82333;
+        transform: scale(1.05);
+      }
+      .record-btn.recording {
+        background: #28a745;
+        animation: pulse 1s infinite;
+      }
+      .result-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin: 30px 0;
+        text-align: center;
+      }
+      .score-display {
+        font-size: 48px;
+        font-weight: bold;
+        margin: 20px 0;
+      }
+      .band-score {
+        display: inline-block;
+        background: rgba(255,255,255,0.2);
+        padding: 10px 20px;
+        border-radius: 25px;
+        margin: 10px;
+        font-size: 18px;
+      }
+      .feedback-section {
+        background: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin: 20px 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+      .loading {
+        text-align: center;
+        padding: 40px;
+      }
+      .spinner {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #007bff;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-top navbar-light">
+      <div class="container">
+        <div class="row no-gutters d-flex align-items-center align-items-stretch">
+          <div class="col-md-4 d-flex align-items-center py-4">
+            <a class="navbar-brand" href="index.html">VisaFluent</a>
+          </div>
+          <div class="col-lg-8 d-block">
+            <div class="row d-flex">
+              <div class="col-md d-flex topper align-items-center align-items-stretch py-md-4">
+                <div class="icon d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+                <div class="text">
+                  <span>Email</span>
+                  <span>info@visafluent.com</span>
+                </div>
+              </div>
+              <div class="col-md d-flex topper align-items-center align-items-stretch py-md-4">
+                <div class="icon d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+                <div class="text">
+                  <span>Call</span>
+                  <span>Call Us: + 1235 2355 98</span>
+                </div>
+              </div>
+              <div class="col-md topper d-flex align-items-center justify-content-end">
+                <p class="mb-0 d-block">
+                  <a href="#" class="btn py-2 px-3 btn-primary" data-toggle="modal" data-target="#enrollModal">
+                    <span>Enroll Now</span>
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
+      <div class="container d-flex align-items-center">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="oi oi-menu"></span> Menu
+        </button>
+        <form action="#" class="searchform order-lg-last">
+          <div class="form-group d-flex">
+            <input type="text" class="form-control pl-3" placeholder="Search">
+            <button type="submit" placeholder="" class="form-control search"><span class="ion-ios-search"></span></button>
+          </div>
+        </form>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a href="index.html" class="nav-link pl-0">Home</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="courses.html" class="nav-link">Courses</a></li>
+            <li class="nav-item"><a href="practice.html" class="nav-link">Practice Tests</a></li>
+            <li class="nav-item active"><a href="ielts-assessment.html" class="nav-link">IELTS Assessment</a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread">AI-Powered IELTS Assessment</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>IELTS Assessment <i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section">
+      <div class="container">
+        <div class="assessment-container">
+          <!-- Progress Bar -->
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+
+          <!-- Welcome Step -->
+          <div class="assessment-step active" id="welcome-step">
+            <div class="question-card">
+              <h2 class="text-center mb-4">Welcome to Your IELTS Assessment</h2>
+              <p class="text-center mb-4">This AI-powered assessment will evaluate your IELTS skills across all four modules: Listening, Reading, Writing, and Speaking.</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <h4>What you'll get:</h4>
+                  <ul>
+                    <li>Detailed band scores for each module</li>
+                    <li>Personalized feedback and recommendations</li>
+                    <li>Study plan tailored to your needs</li>
+                    <li>Estimated overall IELTS band score</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <h4>Assessment duration:</h4>
+                  <ul>
+                    <li>Listening: 5-10 minutes</li>
+                    <li>Reading: 10-15 minutes</li>
+                    <li>Writing: 15-20 minutes</li>
+                    <li>Speaking: 5-10 minutes</li>
+                    <li><strong>Total: 35-55 minutes</strong></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="text-center mt-4">
+                <button class="btn btn-primary btn-lg" onclick="startAssessment()">Start Assessment</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listening Assessment -->
+          <div class="assessment-step" id="listening-step">
+            <div class="question-card">
+              <h3>Listening Assessment</h3>
+              <p>Listen to the audio and answer the questions below.</p>
+              
+              <div class="audio-player mb-4">
+                <audio id="listeningAudio" controls>
+                  <source src="audio/sample-listening.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
+
+              <div id="listeningQuestions">
+                <div class="question mb-4">
+                  <h5>Question 1: What is the main topic of the conversation?</h5>
+                  <button class="option-btn" data-correct="true">A) University accommodation</button>
+                  <button class="option-btn" data-correct="false">B) Travel arrangements</button>
+                  <button class="option-btn" data-correct="false">C) Course registration</button>
+                  <button class="option-btn" data-correct="false">D) Library services</button>
+                </div>
+
+                <div class="question mb-4">
+                  <h5>Question 2: How much does the accommodation cost per week?</h5>
+                  <button class="option-btn" data-correct="false">A) £120</button>
+                  <button class="option-btn" data-correct="true">B) £150</button>
+                  <button class="option-btn" data-correct="false">C) £180</button>
+                  <button class="option-btn" data-correct="false">D) £200</button>
+                </div>
+
+                <div class="question mb-4">
+                  <h5>Question 3: What facilities are included in the accommodation?</h5>
+                  <button class="option-btn" data-correct="false">A) Only basic furniture</button>
+                  <button class="option-btn" data-correct="false">B) Kitchen and bathroom</button>
+                  <button class="option-btn" data-correct="true">C) Kitchen, bathroom, and internet</button>
+                  <button class="option-btn" data-correct="false">D) All utilities included</button>
+                </div>
+              </div>
+
+              <div class="text-center mt-4">
+                <button class="btn btn-primary" onclick="nextStep('reading-step')">Next: Reading</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reading Assessment -->
+          <div class="assessment-step" id="reading-step">
+            <div class="question-card">
+              <h3>Reading Assessment</h3>
+              <p>Read the following passage and answer the questions.</p>
+              
+              <div class="reading-passage mb-4">
+                <h5>Passage: The Impact of Climate Change on Global Agriculture</h5>
+                <p>Climate change represents one of the most significant challenges facing global agriculture in the 21st century. Rising temperatures, changing precipitation patterns, and increased frequency of extreme weather events are already affecting crop yields and agricultural productivity worldwide.</p>
+                <p>Research indicates that global crop yields could decline by 5-15% by 2050 due to climate change, with developing countries being particularly vulnerable. However, the impact varies significantly by region and crop type. Some areas may actually benefit from longer growing seasons, while others face increased drought and flooding risks.</p>
+                <p>Adaptation strategies are crucial for maintaining food security. These include developing drought-resistant crop varieties, improving irrigation systems, and implementing sustainable farming practices. Governments and international organizations are increasingly recognizing the need for coordinated action to address these challenges.</p>
+              </div>
+
+              <div id="readingQuestions">
+                <div class="question mb-4">
+                  <h5>Question 1: What is the main focus of the passage?</h5>
+                  <button class="option-btn" data-correct="false">A) Economic impacts of climate change</button>
+                  <button class="option-btn" data-correct="true">B) Effects of climate change on agriculture</button>
+                  <button class="option-btn" data-correct="false">C) Solutions to global warming</button>
+                  <button class="option-btn" data-correct="false">D) Government policies on farming</button>
+                </div>
+
+                <div class="question mb-4">
+                  <h5>Question 2: According to the passage, what percentage decline in crop yields is predicted by 2050?</h5>
+                  <button class="option-btn" data-correct="false">A) 3-10%</button>
+                  <button class="option-btn" data-correct="true">B) 5-15%</button>
+                  <button class="option-btn" data-correct="false">C) 10-20%</button>
+                  <button class="option-btn" data-correct="false">D) 15-25%</button>
+                </div>
+
+                <div class="question mb-4">
+                  <h5>Question 3: Which of the following is mentioned as an adaptation strategy?</h5>
+                  <button class="option-btn" data-correct="true">A) Developing drought-resistant crops</button>
+                  <button class="option-btn" data-correct="false">B) Reducing carbon emissions</button>
+                  <button class="option-btn" data-correct="false">C) Increasing fertilizer use</button>
+                  <button class="option-btn" data-correct="false">D) Expanding urban areas</button>
+                </div>
+              </div>
+
+              <div class="text-center mt-4">
+                <button class="btn btn-primary" onclick="nextStep('writing-step')">Next: Writing</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Writing Assessment -->
+          <div class="assessment-step" id="writing-step">
+            <div class="question-card">
+              <h3>Writing Assessment</h3>
+              <p>Write an essay on the following topic. Aim for at least 250 words.</p>
+              
+              <div class="writing-prompt mb-4">
+                <h5>Task 2: Some people believe that technology has made our lives easier, while others argue that it has made life more complicated. Discuss both views and give your own opinion.</h5>
+                <p class="text-muted">Write at least 250 words. You should spend about 40 minutes on this task.</p>
+              </div>
+
+              <div class="form-group">
+                <textarea class="text-input" id="writingEssay" placeholder="Write your essay here..." rows="12"></textarea>
+                <div class="mt-2">
+                  <small class="text-muted">Word count: <span id="wordCount">0</span></small>
+                </div>
+              </div>
+
+              <div class="text-center mt-4">
+                <button class="btn btn-primary" onclick="nextStep('speaking-step')">Next: Speaking</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Speaking Assessment -->
+          <div class="assessment-step" id="speaking-step">
+            <div class="question-card">
+              <h3>Speaking Assessment</h3>
+              <p>Record your response to the following speaking prompts.</p>
+              
+              <div class="speaking-section">
+                <h5>Part 1: Personal Information</h5>
+                <p>Tell me about your hometown. Where is it located and what is it famous for?</p>
+                
+                <button class="record-btn" id="recordBtn1" onclick="toggleRecording(1)">
+                  <span class="record-icon">🎤</span> Start Recording
+                </button>
+                
+                <div id="recordingStatus1" class="mt-3" style="display: none;">
+                  <p class="text-danger">Recording... Speak now!</p>
+                  <div class="spinner"></div>
+                </div>
+              </div>
+
+              <div class="speaking-section">
+                <h5>Part 2: Individual Long Turn</h5>
+                <p>Describe a place you would like to visit. You should say:</p>
+                <ul>
+                  <li>Where this place is</li>
+                  <li>What you know about it</li>
+                  <li>Why you would like to visit it</li>
+                  <li>And explain how you would feel about visiting this place</li>
+                </ul>
+                
+                <button class="record-btn" id="recordBtn2" onclick="toggleRecording(2)">
+                  <span class="record-icon">🎤</span> Start Recording
+                </button>
+                
+                <div id="recordingStatus2" class="mt-3" style="display: none;">
+                  <p class="text-danger">Recording... Speak now!</p>
+                  <div class="spinner"></div>
+                </div>
+              </div>
+
+              <div class="text-center mt-4">
+                <button class="btn btn-primary" onclick="submitAssessment()">Submit Assessment</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Results Step -->
+          <div class="assessment-step" id="results-step">
+            <div class="loading" id="loadingResults">
+              <div class="spinner"></div>
+              <h4>Analyzing your assessment...</h4>
+              <p>Our AI is evaluating your responses and generating detailed feedback.</p>
+            </div>
+
+            <div id="assessmentResults" style="display: none;">
+              <div class="result-card">
+                <h2>Your IELTS Assessment Results</h2>
+                <div class="score-display" id="overallScore">7.5</div>
+                <p>Overall Band Score</p>
+                
+                <div class="row mt-4">
+                  <div class="col-md-3">
+                    <div class="band-score" id="listeningScore">7.0</div>
+                    <p>Listening</p>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="band-score" id="readingScore">8.0</div>
+                    <p>Reading</p>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="band-score" id="writingScore">7.5</div>
+                    <p>Writing</p>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="band-score" id="speakingScore">7.0</div>
+                    <p>Speaking</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="feedback-section">
+                <h4>Detailed Feedback</h4>
+                <div id="detailedFeedback">
+                  <!-- AI-generated feedback will be inserted here -->
+                </div>
+              </div>
+
+              <div class="feedback-section">
+                <h4>Recommended Study Plan</h4>
+                <div id="studyPlan">
+                  <!-- AI-generated study plan will be inserted here -->
+                </div>
+              </div>
+
+              <div class="text-center mt-4">
+                <button class="btn btn-primary" onclick="downloadResults()">Download Results</button>
+                <button class="btn btn-secondary" onclick="restartAssessment()">Take Assessment Again</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/ielts-assessment.js"></script>
+  </body>
+</html>
