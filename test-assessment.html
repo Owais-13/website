@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Assessment Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .test-button {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        .test-button:hover {
+            background: #0056b3;
+        }
+        .result {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <h1>IELTS Assessment System Test</h1>
+    
+    <div class="test-section">
+        <h2>Configuration Test</h2>
+        <button class="test-button" onclick="testConfig()">Test Configuration</button>
+        <div id="config-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>OpenAI API Test</h2>
+        <button class="test-button" onclick="testOpenAI()">Test OpenAI Connection</button>
+        <div id="openai-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Assessment Functions Test</h2>
+        <button class="test-button" onclick="testMockAssessment()">Test Mock Assessment</button>
+        <div id="assessment-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Voice Recording Test</h2>
+        <button class="test-button" onclick="testRecording()">Test Microphone Access</button>
+        <div id="recording-result"></div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="js/ielts-assessment.js"></script>
+    <script>
+        function testConfig() {
+            const resultDiv = document.getElementById('config-result');
+            try {
+                if (window.CONFIG) {
+                    resultDiv.innerHTML = `
+                        <div class="result">
+                            <h4>✅ Configuration Loaded Successfully</h4>
+                            <p><strong>OpenAI API Key:</strong> ${window.CONFIG.OPENAI.API_KEY === 'your-openai-api-key-here' ? 'Not configured (Demo mode)' : 'Configured'}</p>
+                            <p><strong>Model:</strong> ${window.CONFIG.OPENAI.MODEL}</p>
+                            <p><strong>Writing Time Limit:</strong> ${window.CONFIG.ASSESSMENT.WRITING_TIME_LIMIT / 60} minutes</p>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="result error">
+                            <h4>❌ Configuration Not Found</h4>
+                            <p>Make sure config.js is loaded properly.</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="result error">
+                        <h4>❌ Configuration Error</h4>
+                        <p>Error: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        async function testOpenAI() {
+            const resultDiv = document.getElementById('openai-result');
+            resultDiv.innerHTML = '<div class="result">Testing OpenAI connection...</div>';
+            
+            try {
+                if (OPENAI_API_KEY === 'your-openai-api-key-here') {
+                    resultDiv.innerHTML = `
+                        <div class="result">
+                            <h4>⚠️ Demo Mode Active</h4>
+                            <p>OpenAI API key not configured. Using mock data for testing.</p>
+                            <p>To enable full functionality, update your API key in config.js</p>
+                        </div>
+                    `;
+                } else {
+                    // Test with a simple prompt
+                    const response = await fetch(OPENAI_API_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${OPENAI_API_KEY}`
+                        },
+                        body: JSON.stringify({
+                            model: 'gpt-3.5-turbo',
+                            messages: [
+                                {
+                                    role: 'user',
+                                    content: 'Hello, this is a test message.'
+                                }
+                            ],
+                            max_tokens: 50
+                        })
+                    });
+                    
+                    if (response.ok) {
+                        resultDiv.innerHTML = `
+                            <div class="result">
+                                <h4>✅ OpenAI Connection Successful</h4>
+                                <p>API is responding correctly.</p>
+                            </div>
+                        `;
+                    } else {
+                        resultDiv.innerHTML = `
+                            <div class="result error">
+                                <h4>❌ OpenAI Connection Failed</h4>
+                                <p>Status: ${response.status}</p>
+                                <p>Check your API key and network connection.</p>
+                            </div>
+                        `;
+                    }
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="result error">
+                        <h4>❌ OpenAI Test Error</h4>
+                        <p>Error: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function testMockAssessment() {
+            const resultDiv = document.getElementById('assessment-result');
+            try {
+                const mockData = {
+                    type: 'writing',
+                    task1: 'This is a test response for Task 1.',
+                    task2: 'This is a test response for Task 2.',
+                    wordCount: { task1: 10, task2: 10 }
+                };
+                
+                const result = generateMockResults(mockData);
+                
+                resultDiv.innerHTML = `
+                    <div class="result">
+                        <h4>✅ Mock Assessment Working</h4>
+                        <p><strong>Overall Band:</strong> ${result.overall_band}</p>
+                        <p><strong>Task Achievement:</strong> ${result.task_achievement}</p>
+                        <p><strong>Coherence & Cohesion:</strong> ${result.coherence_cohesion}</p>
+                        <p><strong>Lexical Resource:</strong> ${result.lexical_resource}</p>
+                        <p><strong>Grammatical Range:</strong> ${result.grammatical_range}</p>
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="result error">
+                        <h4>❌ Mock Assessment Error</h4>
+                        <p>Error: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        async function testRecording() {
+            const resultDiv = document.getElementById('recording-result');
+            resultDiv.innerHTML = '<div class="result">Testing microphone access...</div>';
+            
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                stream.getTracks().forEach(track => track.stop());
+                
+                resultDiv.innerHTML = `
+                    <div class="result">
+                        <h4>✅ Microphone Access Successful</h4>
+                        <p>Voice recording functionality is available.</p>
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="result error">
+                        <h4>❌ Microphone Access Failed</h4>
+                        <p>Error: ${error.message}</p>
+                        <p>Make sure to allow microphone access when prompted.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Run initial tests
+        window.addEventListener('load', function() {
+            testConfig();
+        });
+    </script>
+</body>
+</html>
