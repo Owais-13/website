@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>IELTS Writing Test - AI Powered Scoring</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .test-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .timer {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #007bff;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: bold;
+            z-index: 1000;
+        }
+        
+        .writing-area {
+            margin-top: 30px;
+        }
+        
+        .word-count {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .word-count.warning {
+            color: #ff9800;
+        }
+        
+        .word-count.error {
+            color: #f44336;
+        }
+        
+        .task-description {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .score-results {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .criterion-score {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 50px;
+        }
+        
+        .loading-spinner i {
+            font-size: 50px;
+            color: #007bff;
+        }
+        
+        textarea.form-control {
+            min-height: 400px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        
+        .test-controls {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .test-controls button {
+            margin: 0 10px;
+            padding: 10px 30px;
+        }
+        
+        .task-selector {
+            margin-bottom: 30px;
+        }
+        
+        .difficulty-selector {
+            margin-bottom: 20px;
+        }
+        
+        .feedback {
+            margin-top: 10px;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .improvements ul {
+            margin-top: 10px;
+        }
+        
+        .improvements li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        .badge {
+            font-size: 18px;
+            padding: 8px 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-top navbar-light">
+        <div class="container">
+            <div class="row no-gutters d-flex align-items-center align-items-stretch">
+                <div class="col-md-4 d-flex align-items-center py-4">
+                    <a class="navbar-brand" href="index.html">VisaFluent</a>
+                </div>
+                <div class="col-lg-8 d-block">
+                    <div class="row d-flex">
+                        <div class="col-md d-flex topper align-items-center align-items-stretch py-md-4">
+                            <div class="icon d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+                            <div class="text">
+                                <span>Email</span>
+                                <span>info@ieltsmaster.com</span>
+                            </div>
+                        </div>
+                        <div class="col-md d-flex topper align-items-center align-items-stretch py-md-4">
+                            <div class="icon d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+                            <div class="text">
+                                <span>Call</span>
+                                <span>Call Us: + 1235 2355 98</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container d-flex align-items-center px-4">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link pl-0">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="courses.html" class="nav-link">Courses</a></li>
+                    <li class="nav-item active"><a href="practice.html" class="nav-link">Practice</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-9 ftco-animate text-center">
+                    <h1 class="mb-2 bread">IELTS Writing Test</h1>
+                    <p class="breadcrumbs">
+                        <span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span>
+                        <span class="mr-2"><a href="practice.html">Practice <i class="ion-ios-arrow-forward"></i></a></span>
+                        <span>Writing Test <i class="ion-ios-arrow-forward"></i></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="timer" id="timer">60:00</div>
+    
+    <section class="ftco-section">
+        <div class="container">
+            <div class="test-container">
+                <h2 class="text-center mb-5">IELTS Writing Test with AI Scoring</h2>
+                
+                <!-- Test Setup -->
+                <div id="test-setup">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="task-selector">
+                                <h4>Select Task Type</h4>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="taskType" id="task1" value="task1" checked>
+                                    <label class="form-check-label" for="task1">
+                                        Task 1 - Report Writing (150 words, 20 minutes)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="taskType" id="task2" value="task2">
+                                    <label class="form-check-label" for="task2">
+                                        Task 2 - Essay Writing (250 words, 40 minutes)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="difficulty-selector">
+                                <h4>Select Difficulty</h4>
+                                <select class="form-control" id="difficulty">
+                                    <option value="beginner">Beginner (Band 4-5)</option>
+                                    <option value="intermediate" selected>Intermediate (Band 5.5-6.5)</option>
+                                    <option value="advanced">Advanced (Band 7-9)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary btn-lg" onclick="startWritingTest()">
+                            <i class="icon-play"></i> Start Test
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Test Area -->
+                <div id="test-area" style="display: none;">
+                    <div class="task-description" id="task-description">
+                        <!-- Task will be loaded here -->
+                    </div>
+                    
+                    <div class="writing-area">
+                        <h4>Your Response:</h4>
+                        <textarea class="form-control" id="user-response" placeholder="Start writing your response here..."></textarea>
+                        <div class="word-count" id="word-count">Words: 0</div>
+                    </div>
+                    
+                    <div class="test-controls">
+                        <button class="btn btn-secondary" onclick="cancelTest()">
+                            <i class="icon-close"></i> Cancel
+                        </button>
+                        <button class="btn btn-primary" onclick="submitResponse()">
+                            <i class="icon-check"></i> Submit for Scoring
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Loading Spinner -->
+                <div class="loading-spinner" id="loading-spinner">
+                    <i class="icon-spinner icon-spin"></i>
+                    <h4 class="mt-3">AI is analyzing your response...</h4>
+                    <p>This may take a few seconds</p>
+                </div>
+                
+                <!-- Results Area -->
+                <div id="results-area" style="display: none;">
+                    <!-- Results will be displayed here -->
+                </div>
+                
+                <div class="text-center mt-4" id="restart-button" style="display: none;">
+                    <button class="btn btn-primary" onclick="restartTest()">
+                        <i class="icon-refresh"></i> Take Another Test
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>Copyright &copy; 2024 VisaFluent. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/openai-config.js"></script>
+    <script src="js/ielts-scoring.js"></script>
+    
+    <script>
+        let timer;
+        let timeRemaining;
+        let currentTask = null;
+        
+        // Sample tasks (in production, these would be generated by OpenAI)
+        const sampleTasks = {
+            task1: {
+                beginner: {
+                    task: "The bar chart below shows the number of students enrolled in different subjects at a university in 2020. Summarize the information by selecting and reporting the main features, and make comparisons where relevant.",
+                    instructions: "Write at least 150 words. You should spend about 20 minutes on this task.",
+                    wordLimit: 150
+                },
+                intermediate: {
+                    task: "The graph below shows the changes in the percentage of households with different types of technology in a European country between 1995 and 2015. Summarize the information by selecting and reporting the main features, and make comparisons where relevant.",
+                    instructions: "Write at least 150 words. You should spend about 20 minutes on this task.",
+                    wordLimit: 150
+                },
+                advanced: {
+                    task: "The diagram illustrates the process of recycling plastic bottles into new products. Summarize the information by selecting and reporting the main features, and explain how the process works.",
+                    instructions: "Write at least 150 words. You should spend about 20 minutes on this task.",
+                    wordLimit: 150
+                }
+            },
+            task2: {
+                beginner: {
+                    task: "Some people think that children should start school as early as possible, while others believe that they should start school at the age of seven. Discuss both views and give your own opinion.",
+                    instructions: "Write at least 250 words. You should spend about 40 minutes on this task.",
+                    wordLimit: 250
+                },
+                intermediate: {
+                    task: "In many countries, the gap between the rich and the poor is increasing. What problems does this cause? What solutions can you suggest to deal with this situation?",
+                    instructions: "Write at least 250 words. You should spend about 40 minutes on this task.",
+                    wordLimit: 250
+                },
+                advanced: {
+                    task: "Some argue that technological advancement leads to the loss of traditional cultures, while others believe that technology and tradition can coexist. Discuss both views and give your opinion with relevant examples from your knowledge or experience.",
+                    instructions: "Write at least 250 words. You should spend about 40 minutes on this task.",
+                    wordLimit: 250
+                }
+            }
+        };
+        
+        function startWritingTest() {
+            const taskType = $('input[name="taskType"]:checked').val();
+            const difficulty = $('#difficulty').val();
+            
+            // Get task (in production, this would call generatePracticeQuestion)
+            currentTask = sampleTasks[taskType][difficulty];
+            
+            // Display task
+            $('#task-description').html(`
+                <h4>${taskType === 'task1' ? 'Task 1' : 'Task 2'}</h4>
+                <p class="mb-3">${currentTask.task}</p>
+                <p class="mb-0"><strong>${currentTask.instructions}</strong></p>
+            `);
+            
+            // Setup UI
+            $('#test-setup').hide();
+            $('#test-area').show();
+            $('#timer').show();
+            
+            // Start timer
+            timeRemaining = taskType === 'task1' ? 1200 : 2400; // 20 or 40 minutes
+            startTimer();
+            
+            // Setup word counter
+            $('#user-response').on('input', updateWordCount);
+        }
+        
+        function startTimer() {
+            timer = setInterval(() => {
+                timeRemaining--;
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                $('#timer').text(`${minutes}:${seconds.toString().padStart(2, '0')}`);
+                
+                if (timeRemaining <= 300) { // 5 minutes warning
+                    $('#timer').css('background', '#ff9800');
+                }
+                
+                if (timeRemaining <= 60) { // 1 minute warning
+                    $('#timer').css('background', '#f44336');
+                }
+                
+                if (timeRemaining <= 0) {
+                    clearInterval(timer);
+                    alert('Time is up! Your response will be submitted automatically.');
+                    submitResponse();
+                }
+            }, 1000);
+        }
+        
+        function updateWordCount() {
+            const text = $('#user-response').val();
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0).length;
+            const wordLimit = currentTask.wordLimit;
+            
+            $('#word-count').text(`Words: ${words} / ${wordLimit} minimum`);
+            
+            if (words < wordLimit * 0.8) {
+                $('#word-count').removeClass('warning error').addClass('error');
+            } else if (words < wordLimit) {
+                $('#word-count').removeClass('warning error').addClass('warning');
+            } else {
+                $('#word-count').removeClass('warning error');
+            }
+        }
+        
+        async function submitResponse() {
+            const userResponse = $('#user-response').val().trim();
+            
+            if (!userResponse) {
+                alert('Please write a response before submitting.');
+                return;
+            }
+            
+            // Clear timer
+            if (timer) {
+                clearInterval(timer);
+            }
+            
+            // Show loading
+            $('#test-area').hide();
+            $('#loading-spinner').show();
+            
+            try {
+                // Call scoring function
+                const taskType = $('input[name="taskType"]:checked').val();
+                const scoreData = await ieltsScoring.scoreWritingTask(
+                    currentTask.task,
+                    userResponse,
+                    taskType
+                );
+                
+                // Display results
+                $('#loading-spinner').hide();
+                $('#results-area').html(ieltsScoring.formatScoreDisplay(scoreData)).show();
+                $('#restart-button').show();
+                $('#timer').hide();
+                
+            } catch (error) {
+                $('#loading-spinner').hide();
+                alert('Error scoring your response. Please check your API key configuration and try again.');
+                console.error(error);
+                restartTest();
+            }
+        }
+        
+        function cancelTest() {
+            if (confirm('Are you sure you want to cancel this test?')) {
+                restartTest();
+            }
+        }
+        
+        function restartTest() {
+            // Clear timer
+            if (timer) {
+                clearInterval(timer);
+            }
+            
+            // Reset UI
+            $('#test-setup').show();
+            $('#test-area').hide();
+            $('#results-area').hide();
+            $('#restart-button').hide();
+            $('#loading-spinner').hide();
+            $('#timer').hide().css('background', '#007bff');
+            
+            // Clear form
+            $('#user-response').val('');
+            $('#word-count').text('Words: 0');
+            currentTask = null;
+        }
+    </script>
+</body>
+</html>
