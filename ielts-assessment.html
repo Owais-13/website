@@ -275,44 +275,135 @@
           <!-- Listening Assessment -->
           <div class="assessment-step" id="listening-step">
             <div class="question-card">
-              <h3>Listening Assessment</h3>
-              <p>Listen to the audio and answer the questions below.</p>
+              <h3>AI-Powered IELTS Listening Assessment</h3>
+              <p class="mb-4">You will hear a conversation about gym membership. Listen carefully and answer the questions below. You can play the audio multiple times.</p>
               
-              <div class="audio-player mb-4">
-                <audio id="listeningAudio" controls>
+              <!-- Audio Section -->
+              <div class="audio-section mb-4 p-4 bg-light rounded">
+                <div class="audio-controls mb-3">
+                  <button class="btn btn-outline-primary btn-sm" onclick="playAudio('section1')">🎵 Section 1: Gym Membership</button>
+                  <button class="btn btn-outline-secondary btn-sm ml-2" onclick="playAudio('section2')">🎵 Section 2: Museum Tour</button>
+                  <button class="btn btn-outline-secondary btn-sm ml-2" onclick="playAudio('section3')">🎵 Section 3: Student Discussion</button>
+                </div>
+                
+                <audio id="listeningAudio" controls style="width: 100%;">
+                  <source src="audio/listening/beginner/test1_section1.aiff" type="audio/aiff">
                   <source src="audio/sample-listening.aiff" type="audio/aiff">
                   Your browser does not support the audio element.
                 </audio>
+                
+                <div class="audio-info mt-2">
+                  <small class="text-muted">
+                    <strong>Current Audio:</strong> <span id="currentAudioTitle">Gym Membership Conversation</span> | 
+                    <strong>Duration:</strong> <span id="audioDuration">~2 minutes</span>
+                  </small>
+                </div>
+              </div>
+
+              <!-- Instructions -->
+              <div class="instructions mb-4 p-3 border-left border-primary">
+                <h6 class="text-primary">Instructions:</h6>
+                <ul class="mb-0">
+                  <li>Listen to the entire audio before answering</li>
+                  <li>You can replay the audio as many times as needed</li>
+                  <li>Some questions require exact answers, others are multiple choice</li>
+                  <li>Pay attention to numbers, names, and specific details</li>
+                </ul>
               </div>
 
               <div id="listeningQuestions">
+                <!-- Multiple Choice Questions -->
                 <div class="question mb-4">
-                  <h5>Question 1: What is the main topic of the conversation?</h5>
-                  <button class="option-btn" data-correct="true">A) University accommodation</button>
-                  <button class="option-btn" data-correct="false">B) Travel arrangements</button>
-                  <button class="option-btn" data-correct="false">C) Course registration</button>
-                  <button class="option-btn" data-correct="false">D) Library services</button>
+                  <h5>Question 1: What is the customer's name?</h5>
+                  <div class="question-type-badge">
+                    <span class="badge badge-info">Multiple Choice</span>
+                  </div>
+                  <button class="option-btn" data-correct="false" data-question="1">A) Susan Johnson</button>
+                  <button class="option-btn" data-correct="true" data-question="1">B) Sarah Johnson</button>
+                  <button class="option-btn" data-correct="false" data-question="1">C) Sandra Johnson</button>
+                  <button class="option-btn" data-correct="false" data-question="1">D) Sally Johnson</button>
+                </div>
+
+                <!-- Completion Questions -->
+                <div class="question mb-4">
+                  <h5>Question 2: Complete the information</h5>
+                  <div class="question-type-badge">
+                    <span class="badge badge-warning">Gap Fill</span>
+                  </div>
+                  <p>Phone number: <input type="text" class="form-control d-inline-block" style="width: 150px;" 
+                     id="phone-answer" placeholder="Enter number" data-correct="07700900123" data-question="2"></p>
+                  <small class="text-muted">Write numbers only, no spaces or dashes</small>
                 </div>
 
                 <div class="question mb-4">
-                  <h5>Question 2: How much does the accommodation cost per week?</h5>
-                  <button class="option-btn" data-correct="false">A) £120</button>
-                  <button class="option-btn" data-correct="true">B) £150</button>
-                  <button class="option-btn" data-correct="false">C) £180</button>
-                  <button class="option-btn" data-correct="false">D) £200</button>
+                  <h5>Question 3: Which membership type did the customer choose?</h5>
+                  <div class="question-type-badge">
+                    <span class="badge badge-info">Multiple Choice</span>
+                  </div>
+                  <button class="option-btn" data-correct="false" data-question="3">A) Monthly (£50)</button>
+                  <button class="option-btn" data-correct="false" data-question="3">B) Quarterly (£140)</button>
+                  <button class="option-btn" data-correct="true" data-question="3">C) Annual (£480)</button>
+                  <button class="option-btn" data-correct="false" data-question="3">D) Student discount</button>
                 </div>
 
                 <div class="question mb-4">
-                  <h5>Question 3: What facilities are included in the accommodation?</h5>
-                  <button class="option-btn" data-correct="false">A) Only basic furniture</button>
-                  <button class="option-btn" data-correct="false">B) Kitchen and bathroom</button>
-                  <button class="option-btn" data-correct="true">C) Kitchen, bathroom, and internet</button>
-                  <button class="option-btn" data-correct="false">D) All utilities included</button>
+                  <h5>Question 4: What is included in the membership? (Select all that apply)</h5>
+                  <div class="question-type-badge">
+                    <span class="badge badge-success">Multiple Selection</span>
+                  </div>
+                  <div class="checkbox-group">
+                    <label class="custom-checkbox">
+                      <input type="checkbox" data-correct="true" data-question="4a"> Gym equipment
+                    </label>
+                    <label class="custom-checkbox">
+                      <input type="checkbox" data-correct="true" data-question="4b"> Swimming pool
+                    </label>
+                    <label class="custom-checkbox">
+                      <input type="checkbox" data-correct="true" data-question="4c"> Group classes
+                    </label>
+                    <label class="custom-checkbox">
+                      <input type="checkbox" data-correct="false" data-question="4d"> Personal trainer
+                    </label>
+                  </div>
+                </div>
+
+                <!-- AI Analysis Section -->
+                <div class="ai-analysis-section mb-4 p-4 bg-info text-white rounded">
+                  <h6><i class="fas fa-robot"></i> AI Analysis</h6>
+                  <p class="mb-2">Our AI will analyze your listening comprehension based on:</p>
+                  <ul class="mb-0">
+                    <li>Accuracy of answers</li>
+                    <li>Understanding of key information</li>
+                    <li>Attention to details and numbers</li>
+                    <li>Overall comprehension level</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Audio Transcript (Hidden by default) -->
+              <div class="transcript-section mt-4">
+                <button class="btn btn-outline-secondary btn-sm" type="button" data-toggle="collapse" data-target="#audioTranscript">
+                  📝 Show Transcript (for verification)
+                </button>
+                <div class="collapse mt-3" id="audioTranscript">
+                  <div class="card card-body">
+                    <h6>Audio Transcript:</h6>
+                    <div class="transcript-text" style="font-size: 0.9em; line-height: 1.6;">
+                      <p><strong>Receptionist:</strong> Good morning, City Fitness Center. How can I help you?</p>
+                      <p><strong>Customer:</strong> Hi, I'd like to inquire about membership options. My name is Sarah Johnson.</p>
+                      <p><strong>Receptionist:</strong> Nice to meet you Sarah. Let me tell you about our packages. We have monthly membership for 50 pounds, quarterly for 140 pounds, and annual for 480 pounds.</p>
+                      <p><strong>Customer:</strong> The annual membership sounds good. What's included?</p>
+                      <p><strong>Receptionist:</strong> It includes access to all gym equipment, swimming pool, and group classes.</p>
+                      <p><strong>Customer:</strong> Perfect! Can I pay by card? My phone number is 07700 900123.</p>
+                      <p><strong>Receptionist:</strong> Yes, we accept all major cards. Let me process your annual membership now.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
               <div class="text-center mt-4">
-                <button class="btn btn-primary" onclick="nextStep('reading-step')">Next: Reading</button>
+                <button class="btn btn-success" onclick="analyzeListeningWithAI()">📊 Analyze My Answers with AI</button>
+                <button class="btn btn-primary ml-2" onclick="nextStep('reading-step')">Next: Reading</button>
               </div>
             </div>
           </div>
