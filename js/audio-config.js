@@ -21,7 +21,7 @@ const AUDIO_CONFIG = {
         beginner: {
             test1: {
                 section1: {
-                    audioUrl: "audio/listening/beginner/test1_section1.mp3",
+                    audioUrl: "audio/listening/beginner/test1_section1.aiff",
                     duration: "5:30",
                     transcript: `
                         Receptionist: Good morning, City Fitness Center. How can I help you?
@@ -58,19 +58,19 @@ const AUDIO_CONFIG = {
                     ]
                 },
                 section2: {
-                    audioUrl: "audio/listening/beginner/test1_section2.mp3",
+                    audioUrl: "audio/listening/beginner/test1_section2.aiff",
                     duration: "5:45",
                     transcript: "Tour guide speech about local museum...",
                     questions: []
                 },
                 section3: {
-                    audioUrl: "audio/listening/beginner/test1_section3.mp3",
+                    audioUrl: "audio/listening/beginner/test1_section3.aiff",
                     duration: "6:00",
                     transcript: "Students discussing project...",
                     questions: []
                 },
                 section4: {
-                    audioUrl: "audio/listening/beginner/test1_section4.mp3",
+                    audioUrl: "audio/listening/beginner/test1_section4.aiff",
                     duration: "6:15",
                     transcript: "Lecture on environmental science...",
                     questions: []
