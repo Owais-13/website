@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IELTS Writing Evaluation - VisaFluent</title>
+  <!-- Re-use existing site styles -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Page-specific tweaks */
+    .evaluation-wrapper {
+      max-width: 900px;
+      margin: 80px auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Simple navigation back to home -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">VisaFluent</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item active"><a class="nav-link" href="#">Writing Evaluation</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container evaluation-wrapper">
+    <h2 class="mb-4 text-center">IELTS Writing Task 2 – AI Evaluation</h2>
+    <p class="text-muted text-center">Paste your essay below and receive an estimated band score with feedback powered by OpenAI.</p>
+
+    <div class="form-group">
+      <label for="essayInput"><strong>Your Essay</strong></label>
+      <textarea id="essayInput" class="form-control" rows="12" placeholder="Paste your IELTS Writing Task 2 essay here..."></textarea>
+    </div>
+    <button id="evaluateBtn" class="btn btn-primary btn-block">Get Score</button>
+
+    <div id="result" class="mt-5"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script>
+    (function () {
+      const serverUrl = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://your-server-domain.com';
+
+      $('#evaluateBtn').on('click', async function () {
+        const essay = $('#essayInput').val().trim();
+        if (!essay) {
+          alert('Please enter or paste your essay first.');
+          return;
+        }
+
+        $('#result').html('<div class="text-center"><span class="spinner-border" role="status" aria-hidden="true"></span> Evaluating, please wait...</div>');
+
+        try {
+          const response = await fetch(`${serverUrl}/api/ielts-score`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: essay })
+          });
+
+          if (!response.ok) {
+            const err = await response.json();
+            throw new Error(err.error || 'Failed to get score');
+          }
+
+          const data = await response.json();
+          $('#result').html(`
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h4 class="card-title">Estimated Band: <span class="badge badge-success">${data.band}</span></h4>
+                <p class="card-text">${data.feedback.replace(/\n/g, '<br>')}</p>
+              </div>
+            </div>
+          `);
+        } catch (err) {
+          console.error(err);
+          $('#result').html(`<div class="alert alert-danger">${err.message}</div>`);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
