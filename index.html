@@ -723,6 +723,7 @@
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
   <script src="js/pricing-enhanced.js"></script>
+  <script src="js/payment-config.js"></script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
   <!-- Enrollment Modal -->
@@ -818,56 +819,33 @@
         var form = $('#enrollmentForm')[0];
         if (form.checkValidity()) {
           var selectedCourse = $('#courseSelect option:selected');
-          var amount = selectedCourse.data('amount');
-          var price = selectedCourse.data('price');
+          var courseKey = selectedCourse.val();
           
-          if (!amount) {
+          if (!courseKey) {
             alert('Please select a course');
             return;
           }
 
-          var firstName = $('#firstName').val();
-          var lastName = $('#lastName').val();
-          var email = $('#email').val();
-          var phone = $('#phone').val();
-
-          // Razorpay payment options
-          var options = {
-            "key": "YOUR_RAZORPAY_KEY_ID", // Replace with your actual key
-            "amount": amount, // Amount in paisa
-            "currency": "INR",
-            "name": "VisaFluent",
-            "description": selectedCourse.text(),
-            "image": "/images/logo.png",
-            "order_id": "", // This should be generated from your backend
-            "handler": function (response) {
-              alert('Payment successful! Payment ID: ' + response.razorpay_payment_id);
-              $('#enrollModal').modal('hide');
-              // Here you would typically send the payment details to your backend
-              console.log(response);
-            },
-            "prefill": {
-              "name": firstName + ' ' + lastName,
-              "email": email,
-              "contact": phone
-            },
-            "notes": {
-              "course": selectedCourse.val(),
-              "target_score": $('#targetScore').val(),
-              "exam_date": $('#examDate').val()
-            },
-            "theme": {
-              "color": "#ff9f43"
-            },
-            "modal": {
-              "ondismiss": function() {
-                console.log('Payment cancelled');
-              }
-            }
+          // Collect user details
+          var userDetails = {
+            firstName: $('#firstName').val(),
+            lastName: $('#lastName').val(),
+            email: $('#email').val(),
+            phone: $('#phone').val(),
+            course: courseKey,
+            targetScore: $('#targetScore').val(),
+            examDate: $('#examDate').val()
           };
 
-          var rzp = new Razorpay(options);
-          rzp.open();
+          // Validate form data
+          var errors = PaymentProcessor.validateEnrollmentForm(userDetails);
+          if (errors.length > 0) {
+            alert('Please fix the following errors:\n' + errors.join('\n'));
+            return;
+          }
+
+          // Process payment using the new payment system
+          PaymentProcessor.processPayment(courseKey, userDetails);
         } else {
           form.reportValidity();
         }
