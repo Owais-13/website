@@ -18,6 +18,7 @@ const OPENAI_CONFIG = {
 document.addEventListener('DOMContentLoaded', function() {
     initializeAssessment();
     setupEventListeners();
+    setupAudioEventListeners();
     
     // Load saved API key if available
     const savedApiKey = localStorage.getItem('openai_api_key');
@@ -25,6 +26,51 @@ document.addEventListener('DOMContentLoaded', function() {
         OPENAI_CONFIG.apiKey = savedApiKey;
     }
 });
+
+function setupAudioEventListeners() {
+    const audioElement = document.getElementById('listeningAudio');
+    const audioStatus = document.getElementById('audioStatus');
+    const loadingText = document.getElementById('audioLoadingText');
+    const errorText = document.getElementById('audioErrorText');
+    const readyText = document.getElementById('audioReadyText');
+    
+    if (audioElement) {
+        audioElement.addEventListener('loadstart', function() {
+            if (audioStatus) {
+                audioStatus.style.display = 'block';
+                loadingText.style.display = 'inline';
+                errorText.style.display = 'none';
+                readyText.style.display = 'none';
+            }
+        });
+        
+        audioElement.addEventListener('loadedmetadata', function() {
+            if (audioStatus && readyText) {
+                loadingText.style.display = 'none';
+                errorText.style.display = 'none';
+                readyText.style.display = 'inline';
+                
+                // Hide status after 3 seconds
+                setTimeout(() => {
+                    audioStatus.style.display = 'none';
+                }, 3000);
+            }
+        });
+        
+        audioElement.addEventListener('error', function() {
+            if (audioStatus && errorText) {
+                loadingText.style.display = 'none';
+                readyText.style.display = 'none';
+                errorText.style.display = 'inline';
+            }
+        });
+        
+        // Auto-load the first audio
+        if (audioElement.src) {
+            audioElement.load();
+        }
+    }
+}
 
 function initializeAssessment() {
     // Set up option button listeners
@@ -203,19 +249,9 @@ function playAudio(section) {
     
     const audioSources = {
         'section1': {
-            src: 'audio/listening/beginner/test1_section1.aiff',
+            src: 'audio/listening/beginner/test1_section1.wav',
             title: 'Gym Membership Conversation',
             duration: '~2 minutes'
-        },
-        'section2': {
-            src: 'audio/listening/beginner/test1_section2.aiff',
-            title: 'Museum Tour Guide',
-            duration: '~2.5 minutes'
-        },
-        'section3': {
-            src: 'audio/listening/beginner/test1_section3.aiff',
-            title: 'Student Discussion',
-            duration: '~3 minutes'
         }
     };
     
@@ -229,11 +265,33 @@ function playAudio(section) {
         event.target.classList.remove('btn-outline-secondary');
         event.target.classList.add('btn-primary');
         
+        // Show loading status
+        const audioStatus = document.getElementById('audioStatus');
+        const loadingText = document.getElementById('audioLoadingText');
+        const errorText = document.getElementById('audioErrorText');
+        const readyText = document.getElementById('audioReadyText');
+        
+        if (audioStatus) {
+            audioStatus.style.display = 'block';
+            loadingText.style.display = 'inline';
+            errorText.style.display = 'none';
+            readyText.style.display = 'none';
+        }
+        
         // Load and play audio
         audioElement.load();
-        audioElement.play().catch(e => {
-            console.log('Audio autoplay prevented:', e);
-        });
+        
+        audioElement.addEventListener('loadeddata', function() {
+            audioElement.play().catch(e => {
+                console.log('Audio autoplay prevented:', e);
+                // Show manual play instruction
+                if (audioStatus) {
+                    loadingText.style.display = 'none';
+                    readyText.innerHTML = '▶️ Click play button to start audio';
+                    readyText.style.display = 'inline';
+                }
+            });
+        }, { once: true });
     }
 }
 

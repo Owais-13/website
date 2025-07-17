@@ -166,7 +166,9 @@
       <div class="container">
         <div class="row no-gutters d-flex align-items-center align-items-stretch">
           <div class="col-md-4 d-flex align-items-center py-4">
-            <a class="navbar-brand" href="index.html">VisaFluent</a>
+            <a class="navbar-brand" href="index.html" style="position: relative;">
+    					<img src="images/logo1.png" alt="VisaFluent" style="height: 250px; width: auto; max-width: 250px; position: fixed; top: -50px; left: 20px; z-index: 1000;">
+    				</a>
           </div>
           <div class="col-lg-8 d-block">
             <div class="row d-flex">
@@ -208,14 +210,14 @@
           </div>
         </form>
         <div class="collapse navbar-collapse" id="ftco-nav">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a href="index.html" class="nav-link pl-0">Home</a></li>
-            <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-            <li class="nav-item"><a href="courses.html" class="nav-link">Courses</a></li>
-            <li class="nav-item"><a href="practice.html" class="nav-link">Practice Tests</a></li>
-            <li class="nav-item active"><a href="ielts-assessment.html" class="nav-link">IELTS Assessment</a></li>
-            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-          </ul>
+          	        <ul class="navbar-nav mr-auto">
+	        	<li class="nav-item"><a href="index.html" class="nav-link pl-0">Home</a></li>
+	        	<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+	        	<li class="nav-item"><a href="courses.html" class="nav-link">Courses</a></li>
+	        	<li class="nav-item active"><a href="ielts-assessment.html" class="nav-link">IELTS Assessment</a></li>
+	        	<li class="nav-item"><a href="success.html" class="nav-link">Success Stories</a></li>
+	        	<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+	        </ul>
         </div>
       </div>
     </nav>
@@ -281,16 +283,23 @@
               <!-- Audio Section -->
               <div class="audio-section mb-4 p-4 bg-light rounded">
                 <div class="audio-controls mb-3">
-                  <button class="btn btn-outline-primary btn-sm" onclick="playAudio('section1')">🎵 Section 1: Gym Membership</button>
-                  <button class="btn btn-outline-secondary btn-sm ml-2" onclick="playAudio('section2')">🎵 Section 2: Museum Tour</button>
-                  <button class="btn btn-outline-secondary btn-sm ml-2" onclick="playAudio('section3')">🎵 Section 3: Student Discussion</button>
+                  <button class="btn btn-primary btn-sm" onclick="playAudio('section1')">🎵 Gym Membership Conversation</button>
                 </div>
                 
-                <audio id="listeningAudio" controls style="width: 100%;">
-                  <source src="audio/listening/beginner/test1_section1.aiff" type="audio/aiff">
-                  <source src="audio/sample-listening.aiff" type="audio/aiff">
-                  Your browser does not support the audio element.
-                </audio>
+                                 <audio id="listeningAudio" controls style="width: 100%;" preload="metadata">
+                   <source src="audio/listening/beginner/test1_section1.wav" type="audio/wav">
+                   <source src="audio/sample-listening.wav" type="audio/wav">
+                   <source src="audio/listening/beginner/test1_section1.aiff" type="audio/aiff">
+                   Your browser does not support the audio element.
+                 </audio>
+                 
+                 <div id="audioStatus" class="mt-2" style="display: none;">
+                   <small class="text-muted">
+                     <span id="audioLoadingText">🔄 Loading audio...</span>
+                     <span id="audioErrorText" style="display: none;">❌ Audio failed to load. Please try a different section.</span>
+                     <span id="audioReadyText" style="display: none;">✅ Audio ready to play!</span>
+                   </small>
+                 </div>
                 
                 <div class="audio-info mt-2">
                   <small class="text-muted">
